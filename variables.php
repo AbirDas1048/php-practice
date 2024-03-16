@@ -1,4 +1,16 @@
 <?php
+/*
+Types of variable
+    Integer
+    Double / FLoat
+    String
+    Boolean
+    Null
+    Array
+    Object
+    Resource
+*/
+
 $name = 'Abir Das'; // String type variable.
 $code = 1048; // Number type variable.
 
