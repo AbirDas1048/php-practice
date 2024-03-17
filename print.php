@@ -31,3 +31,7 @@ printf("The value of PI starting with 0 padding and 5 decimal places %09.5f\n", 
 /*
     Output: The value of PI starting with 0 padding and 5 decimal places 003.14159
 */
+
+// Use of sprintf
+$output = sprintf("My name is %s %s\n", $first_name, $last_name);
+echo $output; // Output: My name is Abir Das
