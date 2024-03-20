@@ -1,8 +1,11 @@
 <?php
 
-$m = 7;
+$m = 5;
 $n = 5;
 
+/* 
+    Example 1
+*/
 function greaterOrSmaller($x, $y)
 {
     if ($x > $y) :
@@ -21,5 +24,20 @@ if (greaterOrSmaller($m, $n) == 1) :
 elseif (greaterOrSmaller($m, $n) == 0) :
     printf("{$m} is equal to {$n}");
 elseif (greaterOrSmaller($m, $n) == -1) :
+    printf("{$m} is smaller than {$n}");
+endif;
+
+echo "\n";
+/* 
+    Example 2
+    By Spaceship Operator
+*/
+
+$result = $m <=> $n;
+if ($result == 1) :
+    printf("{$m} is greater than {$n}");
+elseif ($result == 0) :
+    printf("{$m} is equal to {$n}");
+elseif ($result == -1) :
     printf("{$m} is smaller than {$n}");
 endif;
