@@ -19,3 +19,20 @@ function factorial(int $factorial)
 
     return $result;
 }
+
+/*
+    Optional Parameter Example
+*/
+
+function maxNumber($number1, $number2 = 0)
+{
+    $result = $number1 <=> $number2;
+
+    if ($result == 1) :
+        return printf("{$number1} is greater than {$number2}");
+    elseif ($result == 0) :
+        return printf("{$number1} is equal to {$number2}");
+    elseif ($result == -1) :
+        return printf("{$number1} is smaller than {$number2}");
+    endif;
+}
