@@ -36,3 +36,12 @@ function maxNumber($number1, $number2 = 0)
         return printf("{$number1} is smaller than {$number2}");
     endif;
 }
+
+/*
+   Return Type Example
+*/
+
+function sum($number1, $number2, $number3): int
+{
+    return $number1 + $number2 + $number3;
+}
