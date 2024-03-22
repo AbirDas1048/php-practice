@@ -45,3 +45,18 @@ function sum($number1, $number2, $number3): int
 {
     return $number1 + $number2 + $number3;
 }
+
+
+/*
+   Unlimited Arguments Example 1
+*/
+
+function sumWithUnlimitedArgumnets(...$numbers)
+{
+    $result = 0;
+    for ($i = 0; $i < count($numbers); $i++) {
+        $result = $result + $numbers[$i];
+    }
+
+    return $result;
+}
