@@ -48,7 +48,7 @@ function sum($number1, $number2, $number3): int
 
 
 /*
-   Unlimited Arguments Example 1
+   Unlimited Arguments Example
 */
 
 function sumWithUnlimitedArgumnets(...$numbers)
@@ -59,4 +59,17 @@ function sumWithUnlimitedArgumnets(...$numbers)
     }
 
     return $result;
+}
+
+/*
+   Recursive Function Example
+*/
+
+function factorialWithRecursion($n)
+{
+    if ($n <= 1) :
+        return 1;
+    endif;
+
+    return $n * factorialWithRecursion($n - 1);
 }
