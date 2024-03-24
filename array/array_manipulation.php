@@ -1,6 +1,12 @@
 <?php
 
 $friends = array("joy", "pranta", "ashu", "sanjoy", "abhishek");
+
+$length = count($friends);
+for ($i = 0; $i < $length; $i++) {
+    echo $friends[$i] . "\n";
+}
+
 print_r($friends);
 
 /*
