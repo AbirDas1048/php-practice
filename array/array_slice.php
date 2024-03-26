@@ -21,3 +21,24 @@ $new_friends6 = array_slice($friends, -5, -1); // Here negative length (-1) is u
 $new_friends7 = array_slice($friends, -5, -1, true);
 
 print_r($new_friends7);
+
+/*
+    For associative array
+*/
+
+$all_friends = [
+    "joy" => 1014,
+    "pranta" => 1018,
+    "ashu" => 1024,
+    "sanjoy" => 1022,
+    11 => 1048,
+    "abhishek" => 1046,
+    "rony" => 1062,
+    "srejon" => 1061,
+];
+
+$new_all_friends1 = array_slice($all_friends, 2, 5);
+
+$new_all_friends2 = array_slice($all_friends, 2, 5, true);
+
+print_r($new_all_friends2);
