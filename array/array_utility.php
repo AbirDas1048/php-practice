@@ -23,6 +23,11 @@ function even($n)
     return $n % 2 == 0;
 }
 
+function sum($old_value, $new_value)
+{
+    return $old_value + $new_value;
+}
+
 array_walk($numbers_array, 'powerWithPrint', 2);
 
 $power_array = array_map('powerWithReturn', $numbers_array);
@@ -33,3 +38,6 @@ print_r($odd_array);
 
 $even_array = array_filter($numbers_array, 'even');
 print_r($even_array);
+
+$sum_of_numbers_array = array_reduce($numbers_array, 'sum');
+print_r($sum_of_numbers_array);
