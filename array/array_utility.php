@@ -41,3 +41,14 @@ print_r($even_array);
 
 $sum_of_numbers_array = array_reduce($numbers_array, 'sum');
 print_r($sum_of_numbers_array);
+
+echo "\n";
+
+$range = range(11, 20, 2);
+print_r($range);
+
+foreach (range(1, 10, 1) as $num) {
+    if ($num % 2 == 0) {
+        printf("{$num} is even.\n");
+    }
+}
