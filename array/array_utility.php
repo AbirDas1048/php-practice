@@ -47,7 +47,7 @@ echo "\n";
 $range = range(11, 20, 2);
 print_r($range);
 
-foreach (range(1, 10, 1) as $num) {
+foreach (range(1, 10) as $num) {
     if ($num % 2 == 0) {
         printf("{$num} is even.\n");
     }
