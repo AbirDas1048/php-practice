@@ -46,8 +46,8 @@
                     <p>First Name: <?php echo $_GET['first_name']; ?> <br /> </p>
                 <?php } ?>
 
-                <?php if (isset($_GET['last_name']) && !empty($_GET['last_name'])) { ?>
-                    <p>Last Name: <?php echo $_GET['last_name']; ?> <br /> </p>
+                <?php if (isset($_REQUEST['last_name']) && !empty($_REQUEST['last_name'])) { ?>
+                    <p>Last Name: <?php echo $_REQUEST['last_name']; ?> <br /> </p>
                 <?php } ?>
 
                 <form action="" method="GET">
@@ -70,8 +70,8 @@
                     <p>Email: <?php echo $_POST['email']; ?> <br /> </p>
                 <?php } ?>
 
-                <?php if (isset($_POST['designation']) && !empty($_POST['designation'])) { ?>
-                    <p>Designation: <?php echo $_POST['designation']; ?> <br /> </p>
+                <?php if (isset($_REQUEST['designation']) && !empty($_REQUEST['designation'])) { ?>
+                    <p>Designation: <?php echo $_REQUEST['designation']; ?> <br /> </p>
                 <?php } ?>
 
                 <form action="" method="POST">
