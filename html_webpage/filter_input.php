@@ -45,6 +45,8 @@
                 <?php
                 $first_name = '';
                 $last_name = '';
+                $email = '';
+                $designation = '';
 
                 if (isset($_GET['first_name']) && !empty($_GET['first_name'])) {
                     $first_name = htmlspecialchars($_GET['first_name']);
@@ -52,25 +54,38 @@
                 if (isset($_REQUEST['last_name']) && !empty($_REQUEST['last_name'])) {
                     $last_name = htmlspecialchars($_REQUEST['last_name']);
                 }
+
+                if (isset($_REQUEST['email']) && !empty($_REQUEST['email'])) {
+                    // $email = filter_input(INPUT_GET, "email", FILTER_SANITIZE_EMAIL);
+
+                    $email = filter_input(INPUT_GET, "email", FILTER_VALIDATE_EMAIL);
+                }
+
+                if (isset($_GET['designation']) && !empty($_GET['designation'])) {
+                    $designation = filter_input(INPUT_GET, "designation", FILTER_SANITIZE_SPECIAL_CHARS);
+                }
                 ?>
+
 
                 <p>First Name: <?php echo $first_name; ?> <br /> </p>
                 <p>Last Name: <?php echo $last_name; ?> <br /> </p>
+                <p>Email: <?php echo $email; ?> <br /> </p>
+                <p>Designation: <?php echo $designation; ?> <br /> </p>
 
                 <form action="" method="GET">
                     <label for="first_name">First Name</label>
-                    <input type="text" name="first_name" id="first_name">
+                    <input type="text" name="first_name" id="first_name" value="<?php echo $first_name; ?>">
 
                     <label for="last_name">Last Name</label>
-                    <input type="text" name="last_name" id="last_name">
+                    <input type="text" name="last_name" id="last_name" value="<?php echo $last_name; ?>">
 
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email">
+                    <label for=" email">Email</label>
+                    <input type="text" name="email" id="email" value="<?php echo $email; ?>">
 
-                    <label for="designation">Designation</label>
-                    <input type="text" name="designation" id="designation">
+                    <label for=" designation">Designation</label>
+                    <input type="text" name="designation" id="designation" value="<?php echo $designation; ?>">
 
-                    <button class="button" type="submit">Submit GET</button>
+                    <button class=" button" type="submit">Submit GET</button>
                 </form>
 
             </div>
