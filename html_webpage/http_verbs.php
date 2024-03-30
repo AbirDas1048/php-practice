@@ -11,8 +11,19 @@
 </head>
 
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
     body {
         margin-top: 30px;
+    }
+
+    .column {
+        border: 1px solid #9b4dca;
+        margin: 0 5px;
+        padding: 5px;
     }
 
     h4 {
@@ -27,7 +38,8 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="column column-60 column-offset-20">
+            <div class="column">
+
                 <h4>HTTP Verbs: <span>GET Method</span></h4>
 
                 <?php if (isset($_GET['first_name']) && !empty($_GET['first_name'])) { ?>
@@ -45,10 +57,37 @@
                     <label for="last_name">Last Name</label>
                     <input type="text" name="last_name" id="last_name">
 
-                    <button class="button" type="submit">Submit</button>
+                    <button class="button" type="submit">Submit GET</button>
                 </form>
+
+            </div>
+
+            <div class="column">
+
+                <h4>HTTP Verbs: <span>POST Method</span></h4>
+
+                <?php if (isset($_POST['email']) && !empty($_POST['email'])) { ?>
+                    <p>Email: <?php echo $_POST['email']; ?> <br /> </p>
+                <?php } ?>
+
+                <?php if (isset($_POST['designation']) && !empty($_POST['designation'])) { ?>
+                    <p>Designation: <?php echo $_POST['designation']; ?> <br /> </p>
+                <?php } ?>
+
+                <form action="" method="POST">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email">
+
+                    <label for="designation">Designation</label>
+                    <input type="text" name="designation" id="designation">
+
+                    <button class="button" type="submit">Submit POST</button>
+                </form>
+
             </div>
         </div>
+
+
     </div>
 </body>
 
