@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTTP Verbs</title>
+    <title>Filter Input</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
@@ -38,17 +38,24 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="column">
+            <div class="column column-70 column-offset-15">
 
-                <h4>HTTP Verbs: <span>GET Method</span></h4>
+                <h4><span>Filter Inputs</span></h4>
 
-                <?php if (isset($_GET['first_name']) && !empty($_GET['first_name'])) { ?>
-                    <p>First Name: <?php echo $_GET['first_name']; ?> <br /> </p>
-                <?php } ?>
+                <?php
+                $first_name = '';
+                $last_name = '';
 
-                <?php if (isset($_REQUEST['last_name']) && !empty($_REQUEST['last_name'])) { ?>
-                    <p>Last Name: <?php echo $_REQUEST['last_name']; ?> <br /> </p>
-                <?php } ?>
+                if (isset($_GET['first_name']) && !empty($_GET['first_name'])) {
+                    $first_name = htmlspecialchars($_GET['first_name']);
+                }
+                if (isset($_REQUEST['last_name']) && !empty($_REQUEST['last_name'])) {
+                    $last_name = htmlspecialchars($_REQUEST['last_name']);
+                }
+                ?>
+
+                <p>First Name: <?php echo $first_name; ?> <br /> </p>
+                <p>Last Name: <?php echo $last_name; ?> <br /> </p>
 
                 <form action="" method="GET">
                     <label for="first_name">First Name</label>
@@ -57,31 +64,13 @@
                     <label for="last_name">Last Name</label>
                     <input type="text" name="last_name" id="last_name">
 
-                    <button class="button" type="submit">Submit GET</button>
-                </form>
-
-            </div>
-
-            <div class="column">
-
-                <h4>HTTP Verbs: <span>POST Method</span></h4>
-
-                <?php if (isset($_POST['email']) && !empty($_POST['email'])) { ?>
-                    <p>Email: <?php echo $_POST['email']; ?> <br /> </p>
-                <?php } ?>
-
-                <?php if (isset($_REQUEST['designation']) && !empty($_REQUEST['designation'])) { ?>
-                    <p>Designation: <?php echo $_REQUEST['designation']; ?> <br /> </p>
-                <?php } ?>
-
-                <form action="" method="POST">
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email">
 
                     <label for="designation">Designation</label>
                     <input type="text" name="designation" id="designation">
 
-                    <button class="button" type="submit">Submit POST</button>
+                    <button class="button" type="submit">Submit GET</button>
                 </form>
 
             </div>
