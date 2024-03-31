@@ -66,7 +66,6 @@
                 }
                 ?>
 
-
                 <p>First Name: <?php echo $first_name; ?> <br /> </p>
                 <p>Last Name: <?php echo $last_name; ?> <br /> </p>
                 <p>Email: <?php echo $email; ?> <br /> </p>
@@ -79,13 +78,13 @@
                     <label for="last_name">Last Name</label>
                     <input type="text" name="last_name" id="last_name" value="<?php echo $last_name; ?>">
 
-                    <label for=" email">Email</label>
+                    <label for="email">Email</label>
                     <input type="text" name="email" id="email" value="<?php echo $email; ?>">
 
-                    <label for=" designation">Designation</label>
+                    <label for="designation">Designation</label>
                     <input type="text" name="designation" id="designation" value="<?php echo $designation; ?>">
 
-                    <button class=" button" type="submit">Submit GET</button>
+                    <button class="button" type="submit">Submit GET</button>
                 </form>
 
             </div>
