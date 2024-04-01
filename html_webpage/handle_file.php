@@ -71,7 +71,12 @@
 
                 <p>First Name: <?php echo $first_name; ?> <br /> </p>
                 <p>Last Name: <?php echo $last_name; ?> <br /> </p>
-                <p>Image: <?php echo $full_path; ?> <br /> </p>
+                <p>Image <br /> </p>
+
+                <?php if ($full_path !== '') { ?>
+                    <img src="<?php echo $full_path; ?>" alt="uploaded file" width="150px">
+                <?php } ?>
+
 
                 <form action="" method="POST" enctype="multipart/form-data">
                     <label for="first_name">First Name</label>
