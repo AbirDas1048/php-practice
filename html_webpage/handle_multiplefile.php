@@ -50,6 +50,7 @@
                 $move_dir = '../assets/';
                 $file_name = '';
                 $full_path = '';
+                $uploaded_files = [];
 
                 if (isset($_REQUEST['first_name']) && !empty($_REQUEST['first_name'])) {
                     $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -59,11 +60,17 @@
                         filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_SPECIAL_CHARS);
                 }
 
-                if ($_FILES && $_FILES['upload_file']) {
-                    if (in_array($_FILES['upload_file']['type'], $allowed_file_types)) {
-                        $file_name = $_FILES['upload_file']['name'];
-                        $full_path = $move_dir . $file_name;
-                        move_uploaded_file($_FILES['upload_file']['tmp_name'], $full_path);
+                if ($_FILES && $_FILES['upload_file'] && is_array($_FILES['upload_file'])) {
+
+                    $total_file = count($_FILES['upload_file']['name']);
+                    for ($i = 0; $i < $total_file; $i++) {
+                        if (in_array($_FILES['upload_file']['type'][$i], $allowed_file_types)) {
+                            $file_name = $_FILES['upload_file']['name'][$i];
+                            $full_path = $move_dir . $file_name;
+                            if (move_uploaded_file($_FILES['upload_file']['tmp_name'][$i], $full_path)) {
+                                $uploaded_files[] = $full_path;
+                            }
+                        }
                     }
                 }
 
@@ -73,10 +80,13 @@
                 <p>Last Name: <?php echo $last_name; ?> <br /> </p>
                 <p>Image <br /> </p>
 
-                <?php if ($full_path !== '') { ?>
-                    <img src="<?php echo $full_path; ?>" alt="uploaded file" width="150px">
-                <?php } ?>
-
+                <?php
+                if (is_array($uploaded_files)) {
+                    foreach ($uploaded_files as $files) { ?>
+                        <img src="<?php echo $files; ?>" alt="uploaded file" width="150px">
+                <?php }
+                }
+                ?>
 
                 <form action="" method="POST" enctype="multipart/form-data">
                     <label for="first_name">First Name</label>
@@ -86,7 +96,7 @@
                     <input type="text" name="last_name" id="last_name" value="<?php echo $last_name; ?>">
 
                     <label for="upload_file">Upload Image</label>
-                    <input type="file" name="upload_file" id="upload_file">
+                    <input type="file" name="upload_file[]" id="upload_file" multiple>
 
                     <br />
 
