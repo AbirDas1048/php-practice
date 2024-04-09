@@ -20,4 +20,14 @@ while ($line2 = fgets($fp)) {
     echo $line2;
 }
 
+echo PHP_EOL;
+
+fseek($fp, 14); // move the cursor in a specific point of the file
+
+// get all the line
+while ($line3 = fgets($fp, 5)) {
+    echo $line3 . '-';
+}
+
+
 fclose($fp);
