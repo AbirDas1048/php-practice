@@ -29,5 +29,10 @@ while ($line3 = fgets($fp, 5)) {
     echo $line3 . '-';
 }
 
+echo PHP_EOL;
+
+fseek($fp, -1, SEEK_END);
+$line4 = fgets($fp); // Nothing will get. because cursor is end of the file
+echo $line4 . "After print line4";
 
 fclose($fp);
