@@ -35,4 +35,16 @@ fseek($fp, -1, SEEK_END);
 $line4 = fgets($fp); // Nothing will get. because cursor is end of the file
 echo $line4 . "After print line4";
 
+echo PHP_EOL;
+
+$data = file($file_name); // It will return all line in an array of a file.
+print_r($data);
+
+echo PHP_EOL;
+
+$content = file_get_contents($file_name); // It will return all content of a file.
+echo $content;
+
+echo PHP_EOL;
+
 fclose($fp);
