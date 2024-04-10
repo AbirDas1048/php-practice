@@ -1,13 +1,15 @@
 <?php
 $file_name = getcwd() . "/file_handling/data/friend2.txt";
 
-$fp = fopen($file_name, 'w');
+if (is_writeable($file_name)) {
+    $fp = fopen($file_name, 'w');
 
-fwrite($fp, "Shajid\n");
-fwrite($fp, "Nishat\n");
-fwrite($fp, "Rafi\n");
+    fwrite($fp, "Shajid\n");
+    fwrite($fp, "Nishat\n");
+    fwrite($fp, "Rafi\n");
 
-fclose($fp);
+    fclose($fp);
+}
 
 /*
     It always remove the previous data from the file.
