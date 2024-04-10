@@ -27,3 +27,13 @@ fwrite($fp, "Pranta\n");
 fwrite($fp, "Ashu\n");
 
 fclose($fp);
+
+// Example 2
+
+$fp = fopen($file_name, 'a'); // This will be open the file in append mood
+
+fwrite($fp, "Sanjoy\n");
+fwrite($fp, "Rony\n");
+fwrite($fp, "Srejon\n");
+
+fclose($fp);
