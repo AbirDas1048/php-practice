@@ -1,6 +1,6 @@
 <?php
 
-$file_name = getcwd() . "/file_handling/data/friend2.txt";
+$file_name = getcwd() . "/file_handling/data/friend3.txt";
 
 // Example 1
 
@@ -13,6 +13,8 @@ fwrite($fp, "Bashar\n");
 
 $line = fgets($fp);
 echo $line;
+
+echo PHP_EOL . "Example 1 ends" . PHP_EOL;
 
 fclose($fp);
 
@@ -32,8 +34,22 @@ $fp = fopen($file_name, 'w+'); // It removes all previous data from the file
 
 fwrite($fp, "Sakib\n");
 
-rewind($fp);
-$line = fgets($fp);
-echo $line;
+$data = file_get_contents($file_name);
+echo $data;
+
+echo PHP_EOL . "Example 3 ends" . PHP_EOL;
+
+fclose($fp);
+
+// Example 4
+
+$fp = fopen($file_name, 'a+'); // It keeps the cursor last of the file
+
+fwrite($fp, "Habib\n");
+
+$data = file_get_contents($file_name);
+echo $data;
+
+echo PHP_EOL . "Example 4 ends" . PHP_EOL;
 
 fclose($fp);
