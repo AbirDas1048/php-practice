@@ -25,3 +25,15 @@ fseek($fp, -1, SEEK_END); // Move the cursor last of the file
 fwrite($fp, "\nSakib\n");
 
 fclose($fp);
+
+// Example 3
+
+$fp = fopen($file_name, 'w+'); // It removes all previous data from the file
+
+fwrite($fp, "Sakib\n");
+
+rewind($fp);
+$line = fgets($fp);
+echo $line;
+
+fclose($fp);
