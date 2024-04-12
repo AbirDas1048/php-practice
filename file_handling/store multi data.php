@@ -29,3 +29,12 @@ foreach ($infos as $info) {
     fwrite($fp, $data);
 }
 fclose($fp);
+
+// Read from the file
+$fp = fopen($file_name, 'r');
+
+while ($data = fgets($fp)) {
+    $info = explode(",", $data);
+    printf("First Name => %s\nLast Name => %s\nID => %s\nEmail => %s\n\n", $info[0], $info[1], $info[2], $info[3]);
+}
+fclose($fp);
