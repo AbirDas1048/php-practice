@@ -70,3 +70,25 @@ foreach ($all_data as $data) {
     fwrite($fp, $data);
 }
 fclose($fp);
+
+// add new data in the file
+
+$new_info = [
+    [
+        'first_name' => "Sanjoy",
+        'last_name' => "Biswas",
+        'id' => "1022",
+        'email' => "sanjoy@gmail.com",
+    ]
+];
+
+$fp = fopen($file_name, 'a');
+foreach ($new_info as $info) {
+    fputcsv($fp, $info);
+}
+fclose($fp);
+
+$all_data = file($file_name);
+echo "After add new data" . PHP_EOL;
+print_r($all_data);
+echo PHP_EOL;
