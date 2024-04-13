@@ -38,3 +38,10 @@ while ($data = fgets($fp)) {
     printf("First Name => %s\nLast Name => %s\nID => %s\nEmail => %s\n\n", $info[0], $info[1], $info[2], $info[3]);
 }
 fclose($fp);
+
+// Write in the file by comma separated value (CSV)
+$fp = fopen($file_name, 'w');
+foreach ($infos as $info) {
+    fputcsv($fp, $info);
+}
+fclose($fp);
