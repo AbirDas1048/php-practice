@@ -45,3 +45,11 @@ foreach ($infos as $info) {
     fputcsv($fp, $info);
 }
 fclose($fp);
+
+// Read from the file by comma separated value (CSV)
+$fp = fopen($file_name, 'r');
+
+while ($data = fgetcsv($fp)) {
+    printf("First Name => %s\nLast Name => %s\nID => %s\nEmail => %s\n\n", $data[0], $data[1], $data[2], $data[3]);
+}
+fclose($fp);
