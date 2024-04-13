@@ -1,3 +1,2 @@
 Joy,Gosh,1014,joy@gmail.com
-Pranta,Dutta,1018,pranta@gmail.com
 Ashu,Mazumder,1024,ashu@gmail.com

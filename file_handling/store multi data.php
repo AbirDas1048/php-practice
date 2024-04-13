@@ -53,3 +53,20 @@ while ($data = fgetcsv($fp)) {
     printf("First Name => %s\nLast Name => %s\nID => %s\nEmail => %s\n\n", $data[0], $data[1], $data[2], $data[3]);
 }
 fclose($fp);
+
+// Remove a line by line no or index from the file
+
+$all_data = file($file_name);
+echo "Before unset" . PHP_EOL;
+print_r($all_data);
+echo PHP_EOL;
+unset($all_data[1]);
+echo "After unset" . PHP_EOL;
+print_r($all_data);
+echo PHP_EOL;
+
+$fp = fopen($file_name, 'w');
+foreach ($all_data as $data) {
+    fwrite($fp, $data);
+}
+fclose($fp);
