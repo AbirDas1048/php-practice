@@ -28,3 +28,10 @@ file_put_contents($file_name, $data, LOCK_EX);
 $export_from_file = file_get_contents($file_name);
 $export_data = unserialize($export_from_file);
 print_r($export_data);
+
+
+// Remove from serialized data
+
+unset($export_data[1]);
+$new_data = serialize($export_data);
+file_put_contents($file_name, $new_data, LOCK_EX);
