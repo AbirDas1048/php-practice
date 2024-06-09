@@ -1,6 +1,22 @@
 <?php
+include_once "functions.php";
 $mode = 'encode';
-$key = 'abcdefghijklmnopqrstuvwxyz1234567890';
+$mode = $_GET['task'] ?? 'encode';
+$key = $original_key = 'abcdefghijklmnopqrstuvwxyz1234567890';
+if($mode == "key"){
+    $key_original = str_split($key);
+    shuffle($key_original);
+    $key = join('', $key_original);
+}elseif (isset($_POST['key']) && $_POST['key'] !== ''){
+    $key = $_POST['key'];
+}
+$scrambler_data = '';
+if($mode == 'encode'){
+    $data = $_POST['data'] ?? '';
+    if($data != ''){
+        $scrambler_data = scramblerData($data, $key);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,23 +62,23 @@ $key = 'abcdefghijklmnopqrstuvwxyz1234567890';
             <h2>Data Scrambler</h2>
             <p>Use this application to scramble your data</p>
             <p>
-                <a href="/?task=encode">Encode</a> |
-                <a href="/?task=decode">Decode</a> |
-                <a href="/?task=decode">Generate Key</a>
+                <a href="scrambler.php?task=encode">Encode</a> |
+                <a href="scrambler.php?task=decode">Decode</a> |
+                <a href="scrambler.php?task=key">Generate Key</a>
             </p>
         </div>
     </div>
     <div class="row">
         <div class="column column-60 column-offset-20">
-        <form action="" method="GET">
+        <form action="scrambler.php" method="POST">
             <label for="key">key</label>
-            <input type="text" name="key" id="key">
+            <input type="text" name="key" id="key" <?php displayKey($key); ?>>
 
             <label for="data">Data</label>
             <textarea name="data" id="data"></textarea>
 
             <label for="result">Result</label>
-            <textarea name="result" id="result"></textarea>
+            <textarea name="result" id="result"><?php echo $scrambler_data; ?></textarea>
 
             <button type="submit">Do it for me</button>
         </form>
