@@ -17,6 +17,13 @@ if($mode == 'encode'){
         $scrambler_data = scramblerData($data, $key);
     }
 }
+
+if($mode == 'decode'){
+    $data = $_POST['data'] ?? '';
+    if($data != ''){
+        $scrambler_data = decodeData($data, $key);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,12 +77,12 @@ if($mode == 'encode'){
     </div>
     <div class="row">
         <div class="column column-60 column-offset-20">
-        <form action="scrambler.php" method="POST">
+        <form action="scrambler.php<?php echo $mode == 'decode' ? '?task=decode' : ''; ?>" method="POST">
             <label for="key">key</label>
             <input type="text" name="key" id="key" <?php displayKey($key); ?>>
 
             <label for="data">Data</label>
-            <textarea name="data" id="data"></textarea>
+            <textarea name="data" id="data"><?php echo $_POST['data'] ?? ''; ?></textarea>
 
             <label for="result">Result</label>
             <textarea name="result" id="result"><?php echo $scrambler_data; ?></textarea>
