@@ -5,6 +5,10 @@ if ($task == 'seed') {
     seed(DB_NAME);
     $info = "Seeding is completed";
 }
+$data = [];
+if ($task == 'report') {
+    $data = generateReport(DB_NAME);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +41,44 @@ if ($task == 'seed') {
             <p><?php echo $info ?? ""; ?></p>
         </div>
     </div>
+    <?php
+    if ($task == 'report') {
+        ?>
+        <div class="row">
+        <div class="column column-60 column-offset-20">
+            <table>
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>Email</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                if(count($data) > 0){
+                    foreach ($data as $record){
+                        ?>
+                <tr>
+                    <td><?php echo $record['roll']; ?></td>
+                    <td><?php echo $record['first_name'] . ' ' . $record['last_name']; ?></td>
+                    <td><?php echo $record['email']; ?></td>
+                    <td><a href="#">EDIT</a> | <a href="#">DELETE</a></td>
+                    <?php
+                    }
+                } else{ ?>
+                        <td colspan="4">No Data Found</td>
+                    <?php } ?>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <?php
+    }
+    ?>
+
 </div>
 </body>
 </html>
