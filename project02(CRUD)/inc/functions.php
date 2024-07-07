@@ -58,5 +58,35 @@ function generateReport($file_name){
         $data = unserialize($serialized_data);
     }
     return $data;
+}
 
+function addRecord($file_name, $data){
+    $previous_data = generateReport($file_name);
+    $found  = false;
+    $status = 101;
+    $message = '';
+    $count_previous_data = count($previous_data);
+
+    if($count_previous_data > 0){
+        foreach ($previous_data as $record){
+            if($record['roll'] == $data['roll']){
+                $found = true;
+                break;
+            }
+        }
+    }
+
+    if (!$found){
+        $new_id['id'] = $count_previous_data + 1;
+        $new_data = array_merge($new_id, $data);
+        $previous_data[] = $new_data;
+        $serialized_data = serialize($previous_data);
+        file_put_contents($file_name, $serialized_data, LOCK_EX);
+        $status = 100;
+        $message = 'Data added successfully';
+    }else{
+        $message = 'Roll number already exists';
+    }
+
+    return [$status, $message];
 }

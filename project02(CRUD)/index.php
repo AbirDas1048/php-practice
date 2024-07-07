@@ -9,6 +9,26 @@ $data = [];
 if ($task == 'report') {
     $data = generateReport(DB_NAME);
 }
+
+if(isset($_POST['submit'])){
+    $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_SPECIAL_CHARS);
+    $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_SPECIAL_CHARS);
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $roll = filter_input(INPUT_POST, 'roll', FILTER_SANITIZE_NUMBER_INT);
+
+    $data['first_name'] = $first_name ?? '';
+    $data['last_name'] = $last_name ?? '';
+    $data['email'] = $email ?? '';
+    $data['roll'] = $roll ?? '';
+
+    [$status, $message] = addRecord(DB_NAME, $data);
+    if($status == 100){
+        header("location: /project02(CRUD)/index.php?task=report&message=$message");
+    }else{
+        header("location: /project02(CRUD)/index.php?task=add&message=$message");
+    }
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +61,17 @@ if ($task == 'report') {
             <p><?php echo $info ?? ""; ?></p>
         </div>
     </div>
+
+    <?php if(isset($_GET['message'])){ ?>
+        <div class="row">
+            <div class="column column-60 column-offset-20">
+                <blockquote>
+                    <?php echo $_GET['message']; ?>
+                </blockquote>
+            </div>
+        </div>
+    <?php } ?>
+
     <?php
     if ($task == 'report') {
         ?>
@@ -64,7 +95,7 @@ if ($task == 'report') {
                     <td><?php echo $record['roll']; ?></td>
                     <td><?php echo $record['first_name'] . ' ' . $record['last_name']; ?></td>
                     <td><?php echo $record['email']; ?></td>
-                    <td><a href="#">EDIT</a> | <a href="#">DELETE</a></td>
+                    <td><a href="/project02(CRUD)/index.php?task=edit&id=<?php echo $record['id']; ?>">EDIT</a> | <a href="/project02(CRUD)/index.php?task=delete&id=<?php echo $record['id']; ?>">DELETE</a></td>
                     <?php
                     }
                 } else{ ?>
@@ -76,6 +107,33 @@ if ($task == 'report') {
         </div>
     </div>
     <?php
+    }
+    ?>
+
+    <?php
+    if ($task == 'add') {
+        ?>
+        <div class="row">
+            <div class="column column-60 column-offset-20">
+                <form action="" method="POST">
+
+                    <label for="first_name">First Name</label>
+                    <input type="text" name="first_name" id="first_name">
+
+                    <label for="last_name">Last Name</label>
+                    <input type="text" name="last_name" id="last_name">
+
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email">
+
+                    <label for="roll">Roll</label>
+                    <input type="number" name="roll" id="roll">
+
+                    <button type="submit" class="button-primary" name="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <?php
     }
     ?>
 
