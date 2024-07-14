@@ -3,37 +3,64 @@ require_once 'inc/functions.php';
 $task = $_GET['task'] ?? 'report';
 if ($task == 'seed') {
     seed(DB_NAME);
-    $info = "Seeding is completed";
+    $_GET['message'] = "Seeding is completed";
 }
 $data = [];
-if ($task == 'report') {
-    $data = generateReport(DB_NAME);
-}
-
+$id = '';
 $first_name = '';
 $last_name = '';
 $email = '';
 $roll = '';
+if ($task == 'report') {
+    $data = generateReport(DB_NAME);
+}
 
 if(isset($_POST['submit'])){
     $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_SPECIAL_CHARS);
     $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_SPECIAL_CHARS);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $roll = filter_input(INPUT_POST, 'roll', FILTER_SANITIZE_NUMBER_INT);
+    $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 
     $data['first_name'] = $first_name ?? '';
     $data['last_name'] = $last_name ?? '';
     $data['email'] = $email ?? '';
     $data['roll'] = $roll ?? '';
+    $data['id'] = $id ?? '';
 
-    [$status, $message] = addRecord(DB_NAME, $data);
-    if($status == 100){
-        header("location: /project02(CRUD)/index.php?task=report&message=$message");
+    if(!empty($id)){
+        [$status, $message] = editRecord(DB_NAME, $data);
+        if($status == 101){
+            header("location: /project02(CRUD)/index.php?task=report&message=$message");
+        }else{
+            header("location: /project02(CRUD)/index.php?task=edit&id=$id&message=$message");
+        }
     }else{
-        $_GET['message'] = $message;
+        [$status, $message] = addRecord(DB_NAME, $data);
+        if($status == 100){
+            header("location: /project02(CRUD)/index.php?task=report&message=$message");
+        }else{
+            $_GET['message'] = $message;
+        }
     }
-
 }
+
+if($task == 'edit' && isset($_GET['id'])){
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+    [$status, $student] = getStudent($id);
+
+    if($status == 100){
+        $id = $student['id'] ?? '';
+        $first_name = $student['first_name'] ?? '';
+        $last_name = $student['last_name'] ?? '';
+        $email = $student['email'] ?? '';
+        $roll = $student['roll'] ?? '';
+    }else{
+        $message = 'No student found with the id';
+        header("location: /project02(CRUD)/index.php?task=report&message=$message");
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +90,6 @@ if(isset($_POST['submit'])){
             <p>A simple project to perform CRUD operations using plain files and PHP</p>
             <?php include_once ('inc/templates/nav.php'); ?>
             <hr/>
-            <p><?php echo $info ?? ""; ?></p>
         </div>
     </div>
 
@@ -135,6 +161,35 @@ if(isset($_POST['submit'])){
                     <input type="number" name="roll" id="roll" value="<?php echo $roll; ?>">
 
                     <button type="submit" class="button-primary" name="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <?php
+    }
+    ?>
+
+    <?php
+    if ($task == 'edit') {
+        ?>
+        <div class="row">
+            <div class="column column-60 column-offset-20">
+                <form action="/project02(CRUD)/index.php?task=edit" method="POST">
+
+                    <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
+
+                    <label for="first_name">First Name</label>
+                    <input type="text" name="first_name" id="first_name" value="<?php echo $first_name; ?>">
+
+                    <label for="last_name">Last Name</label>
+                    <input type="text" name="last_name" id="last_name" value="<?php echo $last_name; ?>">
+
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" value="<?php echo $email; ?>">
+
+                    <label for="roll">Roll</label>
+                    <input type="number" name="roll" id="roll" value="<?php echo $roll; ?>">
+
+                    <button type="submit" class="button-primary" name="submit">Update</button>
                 </form>
             </div>
         </div>
