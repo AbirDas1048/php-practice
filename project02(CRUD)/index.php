@@ -10,6 +10,11 @@ if ($task == 'report') {
     $data = generateReport(DB_NAME);
 }
 
+$first_name = '';
+$last_name = '';
+$email = '';
+$roll = '';
+
 if(isset($_POST['submit'])){
     $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_SPECIAL_CHARS);
     $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -25,7 +30,7 @@ if(isset($_POST['submit'])){
     if($status == 100){
         header("location: /project02(CRUD)/index.php?task=report&message=$message");
     }else{
-        header("location: /project02(CRUD)/index.php?task=add&message=$message");
+        $_GET['message'] = $message;
     }
 
 }
@@ -115,19 +120,19 @@ if(isset($_POST['submit'])){
         ?>
         <div class="row">
             <div class="column column-60 column-offset-20">
-                <form action="" method="POST">
+                <form action="/project02(CRUD)/index.php?task=add" method="POST">
 
                     <label for="first_name">First Name</label>
-                    <input type="text" name="first_name" id="first_name">
+                    <input type="text" name="first_name" id="first_name" value="<?php echo $first_name; ?>">
 
                     <label for="last_name">Last Name</label>
-                    <input type="text" name="last_name" id="last_name">
+                    <input type="text" name="last_name" id="last_name" value="<?php echo $last_name; ?>">
 
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email">
+                    <input type="email" name="email" id="email" value="<?php echo $email; ?>">
 
                     <label for="roll">Roll</label>
-                    <input type="number" name="roll" id="roll">
+                    <input type="number" name="roll" id="roll" value="<?php echo $roll; ?>">
 
                     <button type="submit" class="button-primary" name="submit">Submit</button>
                 </form>
