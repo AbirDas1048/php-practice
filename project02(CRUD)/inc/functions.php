@@ -61,6 +61,13 @@ function generateReport($file_name): array
     return $data;
 }
 
+function getNewId($previous_data): int
+{
+    $max_id = max(array_column($previous_data, 'id'));
+
+    return $max_id + 1;
+}
+
 function addRecord($file_name, $data): array
 {
     $previous_data = generateReport($file_name);
@@ -79,7 +86,7 @@ function addRecord($file_name, $data): array
     }
 
     if (!$found){
-        $data['id'] = $count_previous_data + 1;
+        $data['id'] = getNewId($previous_data);
 
         $previous_data[] = $data;
         $serialized_data = serialize($previous_data);
@@ -140,6 +147,21 @@ function editRecord($file_name, $data): array
                 $message = 'Data updated successfully';
             }
         }
+    }
+
+    return [$status, $message];
+}
+function deleteStudent($id): array
+{
+    $previous_data = generateReport(DB_NAME);
+    $status = 101;
+    $message = 'Something went wrong';
+    if($previous_data[$id - 1]){
+        unset($previous_data[$id - 1]);
+        $serialized_data = serialize($previous_data);
+        file_put_contents(DB_NAME, $serialized_data, LOCK_EX);
+        $status = 100;
+        $message = 'Data deleted successfully';
     }
 
     return [$status, $message];

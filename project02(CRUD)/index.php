@@ -61,6 +61,18 @@ if($task == 'edit' && isset($_GET['id'])){
     }
 }
 
+if($task == 'delete' && isset($_GET['id'])){
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+    [$status, $message] = deleteStudent($id);
+
+    if($status == 100){
+        header("location: /project02(CRUD)/index.php?task=report&message=$message");
+    }else{
+        $message = 'Something went wrong';
+        header("location: /project02(CRUD)/index.php?task=report&message=$message");
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,7 +138,7 @@ if($task == 'edit' && isset($_GET['id'])){
                     <td><?php echo $record['roll']; ?></td>
                     <td><?php echo $record['first_name'] . ' ' . $record['last_name']; ?></td>
                     <td><?php echo $record['email']; ?></td>
-                    <td><a href="/project02(CRUD)/index.php?task=edit&id=<?php echo $record['id']; ?>">EDIT</a> | <a href="/project02(CRUD)/index.php?task=delete&id=<?php echo $record['id']; ?>">DELETE</a></td>
+                    <td><a href="/project02(CRUD)/index.php?task=edit&id=<?php echo $record['id']; ?>">EDIT</a> | <a class="delete" href="/project02(CRUD)/index.php?task=delete&id=<?php echo $record['id']; ?>">DELETE</a></td>
                     <?php
                     }
                 } else{ ?>
@@ -196,7 +208,8 @@ if($task == 'edit' && isset($_GET['id'])){
         <?php
     }
     ?>
-
 </div>
+
+<script src="assets/js/scripts.js"></script>
 </body>
 </html>
