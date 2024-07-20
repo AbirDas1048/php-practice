@@ -1,8 +1,8 @@
 <?php
 define('DB_NAME', getcwd().'/data/db.txt');
-function seed($file_name): void
-{
-    $data = [
+
+function getDummyStudent(): array{
+    return [
         [
             "id" => 1,
             "first_name" => "Joy",
@@ -46,19 +46,38 @@ function seed($file_name): void
             "roll" => 1062
         ]
     ];
+}
 
-    $serialized_data = serialize($data);
-    file_put_contents($file_name, $serialized_data, LOCK_EX);
+function getDataFromFile($file_name){
+    $content = "";
+    if (!empty($file_name) && file_exists($file_name)) {
+        $content = file_get_contents($file_name);
+    }
+    return $content;
+}
+
+function putDataIntoFile($data, $file_name): void{
+    file_put_contents($file_name, $data, LOCK_EX);
+}
+
+function convertSerializeData($data){
+    return serialize($data);
+}
+function convertUnSerializeData($data){
+    return unserialize($data);
+}
+
+function seed($file_name): void
+{
+    $data = getDummyStudent();
+    $serialized_data = convertSerializeData($data);
+    putDataIntoFile($serialized_data, $file_name);
 }
 
 function generateReport($file_name): array
 {
-    $data = [];
-    if (!empty($file_name) && file_exists($file_name)){
-        $serialized_data = file_get_contents($file_name);
-        $data = unserialize($serialized_data);
-    }
-    return $data;
+    $file_data = getDataFromFile($file_name);
+    return convertUnSerializeData($file_data);
 }
 
 function getNewId($previous_data): int
@@ -70,7 +89,7 @@ function getNewId($previous_data): int
 
 function addRecord($file_name, $data): array
 {
-    $previous_data = generateReport($file_name);
+    $previous_data = convertUnSerializeData(getDataFromFile($file_name));
     $found  = false;
     $status = 101;
     $message = 'Roll number already exists';
@@ -89,8 +108,7 @@ function addRecord($file_name, $data): array
         $data['id'] = getNewId($previous_data);
 
         $previous_data[] = $data;
-        $serialized_data = serialize($previous_data);
-        file_put_contents($file_name, $serialized_data, LOCK_EX);
+        putDataIntoFile(convertSerializeData($previous_data), $file_name);
         $status = 100;
         $message = 'Data added successfully';
     }
@@ -100,7 +118,7 @@ function addRecord($file_name, $data): array
 
 function getStudent($id): array
 {
-    $data = generateReport(DB_NAME);
+    $data = convertUnSerializeData(getDataFromFile(DB_NAME));
     $status = 101;
     $student = [];
     $count_previous_data = count($data);
@@ -119,7 +137,7 @@ function getStudent($id): array
 
 function editRecord($file_name, $data): array
 {
-    $previous_data = generateReport($file_name);
+    $previous_data = convertUnSerializeData(getDataFromFile($file_name));
     $found = false;
     $status = 101;
     $message = 'Something went wrong';
@@ -141,8 +159,7 @@ function editRecord($file_name, $data): array
                 $previous_data[$data['id'] - 1]['last_name'] = $data['last_name'];
                 $previous_data[$data['id'] - 1]['email'] = $data['email'];
                 $previous_data[$data['id'] - 1]['roll'] = $data['roll'];
-                $serialized_data = serialize($previous_data);
-                file_put_contents($file_name, $serialized_data, LOCK_EX);
+                putDataIntoFile(convertSerializeData($previous_data), $file_name);
                 $status = 100;
                 $message = 'Data updated successfully';
             }
@@ -153,13 +170,12 @@ function editRecord($file_name, $data): array
 }
 function deleteStudent($id): array
 {
-    $previous_data = generateReport(DB_NAME);
+    $previous_data = convertUnSerializeData(getDataFromFile(DB_NAME));
     $status = 101;
     $message = 'Something went wrong';
     if($previous_data[$id - 1]){
         unset($previous_data[$id - 1]);
-        $serialized_data = serialize($previous_data);
-        file_put_contents(DB_NAME, $serialized_data, LOCK_EX);
+        putDataIntoFile(convertSerializeData($previous_data), DB_NAME);
         $status = 100;
         $message = 'Data deleted successfully';
     }
