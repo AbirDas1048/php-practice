@@ -1,9 +1,17 @@
 <div>
     <div class="float-left">
         <p>
-            <a href="/session/session_with_crud/index.php?task=report">All Students</a> |
-            <a href="/session/session_with_crud/index.php?task=add">Add New Student</a> |
-            <a href="/session/session_with_crud/index.php?task=seed">Seed</a>
+            <a href="/session/session_with_crud/index.php?task=report">All Students</a>
+
+            <?php if(hasPrivilege()): ?>
+                |
+                <a href="/session/session_with_crud/index.php?task=add">Add New Student</a>
+            <?php endif; ?>
+
+            <?php if(isAdmin()): ?>
+                |
+                <a href="/session/session_with_crud/index.php?task=seed">Seed</a>
+            <?php endif; ?>
         </p>
     </div>
 

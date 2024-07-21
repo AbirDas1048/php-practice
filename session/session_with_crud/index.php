@@ -3,6 +3,10 @@ session_start();
 require_once 'inc/functions.php';
 $task = $_GET['task'] ?? 'report';
 if ($task == 'seed') {
+    if(!isAdmin()){
+        header("location: /session/session_with_crud/index.php?task=report&message=No Permission");
+        return;
+    }
     seed(DB_NAME);
     $_GET['message'] = "Seeding is completed";
 }
@@ -47,6 +51,10 @@ if(isset($_POST['submit'])){
 }
 
 if($task == 'edit' && isset($_GET['id'])){
+    if(!hasPrivilege()){
+        header("location: /session/session_with_crud/index.php?task=report&message=No Permission");
+        return;
+    }
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     [$status, $student] = getStudent($id);
 
@@ -63,6 +71,10 @@ if($task == 'edit' && isset($_GET['id'])){
 }
 
 if($task == 'delete' && isset($_GET['id'])){
+    if(!isAdmin()){
+        header("location: /session/session_with_crud/index.php?task=report&message=No Permission");
+        return;
+    }
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     [$status, $message] = deleteStudent($id);
 
@@ -127,7 +139,9 @@ if($task == 'delete' && isset($_GET['id'])){
                         <td>ID</td>
                         <td>Name</td>
                         <td>Email</td>
-                        <td>Action</td>
+                        <?php if(isAdmin() || isEditor()): ?>
+                            <td>Action</td>
+                        <?php endif; ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -139,7 +153,11 @@ if($task == 'delete' && isset($_GET['id'])){
                     <td><?php echo $record['roll']; ?></td>
                     <td><?php echo $record['first_name'] . ' ' . $record['last_name']; ?></td>
                     <td><?php echo $record['email']; ?></td>
-                    <td><a href="/session/session_with_crud/index.php?task=edit&id=<?php echo $record['id']; ?>">EDIT</a> | <a class="delete" href="/session/session_with_crud/index.php?task=delete&id=<?php echo $record['id']; ?>">DELETE</a></td>
+                    <?php if(isAdmin()): ?>
+                        <td><a href="/session/session_with_crud/index.php?task=edit&id=<?php echo $record['id']; ?>">EDIT</a> | <a class="delete" href="/session/session_with_crud/index.php?task=delete&id=<?php echo $record['id']; ?>">DELETE</a></td>
+                    <?php elseif (isEditor()): ?>
+                        <td><a href="/session/session_with_crud/index.php?task=edit&id=<?php echo $record['id']; ?>">EDIT</a></td>
+                    <?php endif; ?>
                     <?php
                     }
                 } else{ ?>
@@ -156,6 +174,10 @@ if($task == 'delete' && isset($_GET['id'])){
 
     <?php
     if ($task == 'add') {
+        if(!hasPrivilege()){
+            header("location: /session/session_with_crud/index.php?task=report&message=No Permission");
+            return;
+        }
         ?>
         <div class="row">
             <div class="column column-60 column-offset-20">

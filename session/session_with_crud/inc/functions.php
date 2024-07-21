@@ -182,3 +182,26 @@ function deleteStudent($id): array
 
     return [$status, $message];
 }
+
+function isAdmin():bool
+{
+    $is_admin = false;
+    if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+        $is_admin = true;
+    }
+    return  $is_admin;
+}
+
+function isEditor():bool
+{
+    $is_editor = false;
+    if(isset($_SESSION['role']) && $_SESSION['role'] == 'editor'){
+        $is_editor = true;
+    }
+    return  $is_editor;
+}
+
+function hasPrivilege()
+{
+    return isAdmin() || isEditor();
+}

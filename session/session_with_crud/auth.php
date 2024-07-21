@@ -17,6 +17,7 @@ if($username && $password){
         if($username == $data[0] && sha1($password) == $data[1]){
             $_SESSION['logged_in'] = true;
             $_SESSION['username'] = $username;
+            $_SESSION['role'] = $data[2];
             header('location: /session/session_with_crud/index.php');
         }
     }
