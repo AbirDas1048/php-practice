@@ -16,7 +16,7 @@ abstract class Product
         echo "Category: $this->category.\n";
     }
 
-    public function discount($percentage): float{
+    final public function discount($percentage): float{
         return ($this->price - (($this->price * $percentage)/100));
     }
 }
