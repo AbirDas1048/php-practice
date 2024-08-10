@@ -58,7 +58,7 @@ $objectCollection->addAnimal(new Cat());
 $objectCollection->addAnimal(new Dog());
 
 /*
-$objectCollection->addAnimal(new Student()); // This will five fatal error
+$objectCollection->addAnimal(new Student()); // This will give fatal error
 */
 
 $objectCollection->addPerson(new Student());
