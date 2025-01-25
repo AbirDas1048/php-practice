@@ -1,5 +1,4 @@
 <?php
-
 namespace Vehicle;
 class Car
 {
