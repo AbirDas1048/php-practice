@@ -29,10 +29,27 @@ trait TraitNumberSeries
         echo "Hi, I am number2 from TraitNumberSeries Trait". PHP_EOL;
     }
 
+    public function sameMethod(): void
+    {
+        echo "Hi, I am sameMethod from TraitNumberSeries Trait". PHP_EOL;
+    }
+
+}
+
+trait TraitNumberSeries2
+{
+    public function sameMethod(): void
+    {
+        echo "Hi, I am sameMethod from TraitNumberSeries2 Trait". PHP_EOL;
+    }
+
 }
 
 class NumberSeries extends BaseNumberSeries{
-    use TraitNumberSeries;
+    use TraitNumberSeries, TraitNumberSeries2{
+        TraitNumberSeries::sameMethod insteadof TraitNumberSeries2;
+        TraitNumberSeries2::sameMethod as traitNumberSeries2SameMethod;
+    }
 
     public function number1(): void
     {
@@ -44,3 +61,5 @@ $ns = new NumberSeries();
 $ns->number1();
 $ns->number2();
 $ns->number3();
+$ns->sameMethod();
+$ns->traitNumberSeries2SameMethod();
