@@ -70,7 +70,7 @@ class Product {
 
 $product = new Product();
 $product->get();
-$product->sort_by('date');
+$product->sort_by('name');
 ?>
 
 <!DOCTYPE html>
