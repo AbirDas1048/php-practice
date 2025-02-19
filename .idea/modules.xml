@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/PHP-Practice.iml" filepath="$PROJECT_DIR$/.idea/PHP-Practice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../PHPCourse-master/.idea/PHPCourse-master.iml" filepath="$PROJECT_DIR$/../PHPCourse-master/.idea/PHPCourse-master.iml" />
     </modules>
   </component>
 </project>
