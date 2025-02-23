@@ -1,4 +1,22 @@
 <?php
+
+/***
+ * An interface in OOP is a contract that defines a set of methods that a class must implement.
+ * It serves as a blueprint for behavior without providing any implementation details.
+ * Interfaces support multiple inheritance, allowing a class to implement multiple interfaces.
+ * All methods declared in an interface must be implemented by the class that implements the interface.
+ * Interfaces cannot have fields or constructors.
+ * They focus solely on method signatures and do not allow the inclusion of variables or constructor definitions.
+ * Only methods are allowed to an interface.
+ * All the methods will work like an abstract method.
+ * All methods visibility needs to be public.
+ * When we implement an interface, we need to declare all the methods with same no of parameters in the implemented class.
+ * An interface can be extended with another interface.
+ * In PHP, an interface cannot have a constructor.
+ * Because interfaces only define method signatures and do not provide implementations.
+ * Since PHP interfaces cannot be instantiated directly, they do not need constructors.
+ */
+
  interface BaseOrganism
  {
      public function eat();
