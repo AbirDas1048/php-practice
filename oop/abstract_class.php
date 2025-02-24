@@ -1,6 +1,18 @@
 <?php
 abstract class Product
 {
+    /***
+     * An abstract class is a class that contains at least one abstract method.
+     * An abstract method is a method that is declared, but not implemented in the code.
+     * An abstract class or method is defined with the abstract keyword.
+     * The child class method must be defined with the same name and it redeclare the parent abstract method.
+     * The child class method must be defined with the same or a less restricted access modifier.
+     * So, if the abstract method is defined as protected,
+     * the child class method must be defined as either protected or public, but not private.
+     * The number of required arguments must be the same.
+     * However, the child class may have optional arguments in addition.
+     */
+
     protected $name;
     protected $price;
     private $category;
