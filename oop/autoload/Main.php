@@ -1,8 +1,8 @@
 <?php
 
 /**
- * We manually include file if we use any method of a class.
- * Using spl_autoload_register it includes all necessary file.
+ * We manually include a file if we use any method of a class.
+ * Using spl_autoload_register, it includes all necessary files.
  * If our file name is lowercase, then we need to use strtolower() function.
  */
 // include 'Car.php';

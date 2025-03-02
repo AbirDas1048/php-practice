@@ -35,3 +35,34 @@ printf("The value of PI starting with 0 padding and 5 decimal places %09.5f\n", 
 // Use of sprintf
 $output = sprintf("My name is %s %s\n", $first_name, $last_name);
 echo $output; // Output: My name is Abir Das
+
+/***
+ * Differences
+ * var_dump() displays structured information (type, value, and length) about variables.
+ * No return value.
+ *
+ * echo Language construct (not a function).
+ * No return value.
+ * Print one or more strings.
+ * It can print multiple strings.
+ *
+ * print Language construct.
+ * Returns 1
+ * Prints a single string.
+ * It cannot print multiple strings.
+ *
+ * print_r() is a Function.
+ * Returns the output as a string if the second parameter is true.
+ * Used for printing human-readable information about arrays and objects.
+ * It cannot print multiple strings.
+ *
+ * printf() is a Function.
+ * Returns the length of the outputted string.
+ * Formats and prints a string using placeholders.
+ * It cannot print multiple strings.
+ *
+ * sprintf() is a Function.
+ * Returns the formatted string instead of printing it.
+ * Similar to printf(), but stores the result in a variable.
+ * It cannot print multiple strings.
+ */
