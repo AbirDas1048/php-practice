@@ -1,4 +1,11 @@
 <?php
+
+/***
+ * The clone keyword is used to create a copy of an object.
+ * If any of the properties was a reference to another variable or object, then only the reference is copied.
+ * Reference always passes objects, so if the original object has another object in its properties, the copy will point to the same object.
+ * This behavior can be changed by creating a __clone() method in the class.
+ */
 class Color{
     public $color;
     public function __construct($color){
