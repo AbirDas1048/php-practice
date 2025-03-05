@@ -15,3 +15,13 @@ echo PHP_EOL;
 $scan_dir = scandir($get_parent_dir_of_current_working_dir);
 print_r($scan_dir);
 echo PHP_EOL;
+
+foreach ($scan_dir as $item){
+    if($item != "." && $item != ".."){
+        if(is_dir($get_parent_dir_of_current_working_dir."/".$item)){
+            echo "[d] => $item" . PHP_EOL;
+        }else{
+            echo "[f] => $item" . PHP_EOL;
+        }
+    }
+}
