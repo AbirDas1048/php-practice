@@ -25,3 +25,22 @@ foreach ($scan_dir as $item){
         }
     }
 }
+
+function countDir($dir): int
+{
+    $count = 0;
+    $scan_dir = scandir($dir);
+
+    foreach ($scan_dir as $item){
+        if($item != "." && $item != ".."){
+            if(is_dir($dir."/".$item)){
+                $count++;
+            }
+        }
+    }
+    return $count;
+}
+
+
+echo PHP_EOL;
+echo "Total Directory " . countDir(dirname(getcwd())) . PHP_EOL;
