@@ -57,5 +57,5 @@ print_r($dir2->getFiles());
 echo PHP_EOL;
 
 echo "Read directory and files from specific index of an directory" . PHP_EOL;
-$oop = $dir->getDirectory(11);
+$oop = $dir->getDirectory(10);
 print_r($oop->getFiles());
