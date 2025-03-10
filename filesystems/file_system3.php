@@ -4,6 +4,7 @@ class Dir
     private $directory = [];
     private $files = [];
     private $path;
+    private $directoryObjects = [];
 
     public function __construct($path){
         if(is_readable($path)){
@@ -25,7 +26,10 @@ class Dir
     public function getDirectory($index)
     {
         if(isset($this->directory[$index])){
-            return new Dir($this->path.DIRECTORY_SEPARATOR.$this->directory[$index]);
+            if(!isset($this->directoryObjects[$index])){
+                $this->directoryObjects[$index] = new Dir($this->path.DIRECTORY_SEPARATOR.$this->directory[$index]);
+            }
+            return $this->directoryObjects[$index];
         }else{
             throw new Exception("Directory does not exist");
         }
