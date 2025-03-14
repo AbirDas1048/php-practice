@@ -27,3 +27,22 @@ sleep(2);
 unlink('test_file_system2/t1/t2/t3/t4/t5/test.txt');
 sleep(2);
 rmdir('test_file_system2/t1/t2/t3/t4/t5');
+
+// Make a delete directory method with unlinking the files
+file_put_contents('test_file_system2/t1/t2/t3/t4/test.txt', 'test');
+file_put_contents('test_file_system2/t1/t2/t3/t4/test2.txt', 'test');
+file_put_contents('test_file_system2/t1/t2/t3/t4/test3.txt', 'test');
+sleep(2);
+
+deleteDir(getcwd() . DIRECTORY_SEPARATOR . 'test_file_system2/t1/t2/t3/t4');
+function deleteDir($path){
+    $files = scandir($path);
+    if(count($files) > 2){
+        foreach($files as $file){
+            if($file != "." && $file != ".."){
+                unlink($path.DIRECTORY_SEPARATOR.$file);
+            }
+        }
+    }
+    rmdir($path);
+}
