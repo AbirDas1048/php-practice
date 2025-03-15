@@ -35,7 +35,8 @@ file_put_contents('test_file_system2/t1/t2/t3/t4/test3.txt', 'test');
 sleep(2);
 
 deleteDir(getcwd() . DIRECTORY_SEPARATOR . 'test_file_system2/t1/t2/t3/t4');
-function deleteDir($path){
+function deleteDir($path): void
+{
     $files = scandir($path);
     if(count($files) > 2){
         foreach($files as $file){
