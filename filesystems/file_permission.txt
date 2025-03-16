@@ -1,0 +1,63 @@
+Special,User,Group,Other
+setuid (4) - s,Read (4) - r,Read (4) - r,Read (4) - r
+setgid (2) - s,Write (2) - w,Write (2) - w,Write (2) - w
+Sticky Mode (1) - t,Execute (1) - x,Execute (1) - x,Execute (1) - x
+
+
+
+So, if permission number is 0777(rwxrwxrwx) that means it has permission
+User (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx),
+Group (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx),
+Other (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx)
+
+if permission number is 0467(r--rw-rwx) that means it has permission
+User (Read, -, -) => number (4+0+0 = 4) => symbol(r--),
+Group (Read, Write, -) => number (4+2+0 = 6) => symbol(rw-),
+Other (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx)
+
+if permission number is 0453(r--r-x-wx) that means it has permission
+User (Read, -, -) => number (4+0+0 = 4) => symbol(r--),
+Group (Read, -, Execute) => number (4+0+1 = 5) => symbol(r-x),
+Other (-, Write, Execute) => number (0+2+1 = 7) => symbol(-wx)
+
+if permission number is 4777(rwsrwxrwx) that means it has permission
+Special (Setuid, -, -) => number (4+0+0 = 4)
+User (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rws),
+Group (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx),
+Other (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx)
+
+if permission number is 4677(rwSrwxrwx) that means it has permission
+Special (Setuid, -, -) => number (4+0+0 = 4)
+User (Read, Write, -) => number (4+2+0 = 6) => symbol(rwS),
+Group (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx),
+Other (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx)
+
+if permission number is 2777(rwxrwsrwx) that means it has permission
+Special (-, Setgid, -) => number (0+2+0 = 2)
+User (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx),
+Group (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rws),
+Other (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx)
+
+if permission number is 2767(rwxrwSrwx) that means it has permission
+Special (-, Setgid, -) => number (0+2+0 = 2)
+User (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx),
+Group (Read, Write, -) => number (4+2+0 = 6) => symbol(rwS),
+Other (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx)
+
+if permission number is 1777(rwxrwxrwt) that means it has permission
+Special (-, -, Sticky Mode) => number (0+0+1 = 1)
+User (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx),
+Group (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx),
+Other (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwt)
+
+if permission number is 1776(rwxrwxrwT) that means it has permission
+Special (-, -, Sticky Mode) => number (0+0+1 = 1)
+User (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx),
+Group (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwx),
+Other (Read, Write, -) => number (4+2+0 = 6) => symbol(rwT)
+
+if permission number is 7777(rwsrwsrwt) that means it has permission
+Special (Setuid, Setgid, Sticky Mode) => number (4+2+1 = 7)
+User (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rws),
+Group (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rws),
+Other (Read, Write, Execute) => number (4+2+1 = 7) => symbol(rwt)
