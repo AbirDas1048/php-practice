@@ -1,4 +1,15 @@
 <?php
+
+/***
+ * Dependency Injection (DI)
+ * is a design pattern that promotes loose coupling by injecting dependencies into a class instead of hardcoding them.
+ * It helps improve maintainability, testability, and flexibility in applications.
+ * In traditional programming, when a class needs to use another class or object,
+ * it directly creates or instantiates the required object within itself.
+ * This creates a tight coupling between classes, making them dependent on each other.
+ * This can lead to several issues such as code that is hard to maintain,
+ * difficult to test in isolation, and limited flexibility in changing dependencies.
+ */
 interface BaseStudent{
     public function display();
 }
