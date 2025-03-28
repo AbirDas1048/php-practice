@@ -1,4 +1,10 @@
 <?php
+
+/***
+ * Constructor Injection
+ * Dependencies are passed through the class constructor.
+ * This is the most common and preferred method since it ensures dependencies are available when the object is created.
+ */
 interface BaseStorage{
     public function setFileName($file_name);
     public function setMode($mode);
@@ -62,3 +68,12 @@ echo "FILE WRITE WITH OLD DATA AGAIN" . PHP_EOL;
 
 $strg = new Storage($file, FILE_APPEND);
 $strgMngr->saveAndShowData($strg, '4 Test ');
+
+/***
+ * Why is it Constructor Injection?
+ * The Storage class requires a file name ($file_name) and an optional mode ($mode) when an object is created.
+ * These dependencies are injected via the constructor.
+ * The StorageManager class does not store the dependency but uses it in a method.
+ * Instead of injecting BaseStorage in the constructor of StorageManager,
+ * it is provided as a parameter in saveAndShowData().
+ */
