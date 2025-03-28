@@ -46,6 +46,7 @@ class StorageManager{
     }
 }
 
+// Usage
 $file = 'data/test.txt';
 
 echo "FILE WRITE WITH NEW DATA" . PHP_EOL;
@@ -56,7 +57,6 @@ $strgMngr->saveAndShowData($strg, '1 Test ');
 
 echo "FILE WRITE WITH NEW DATA AGAIN" . PHP_EOL;
 
-$strg = new Storage($file);
 $strgMngr->saveAndShowData($strg, '2 Test ');
 
 echo "FILE WRITE WITH OLD DATA" . PHP_EOL;
@@ -66,7 +66,6 @@ $strgMngr->saveAndShowData($strg, '3 Test ');
 
 echo "FILE WRITE WITH OLD DATA AGAIN" . PHP_EOL;
 
-$strg = new Storage($file, FILE_APPEND);
 $strgMngr->saveAndShowData($strg, '4 Test ');
 
 /***

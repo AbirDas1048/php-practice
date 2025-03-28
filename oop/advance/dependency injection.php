@@ -10,6 +10,27 @@
  * This can lead to several issues such as code that is hard to maintain,
  * difficult to test in isolation, and limited flexibility in changing dependencies.
  */
+
+
+/***
+ * Types of DI, How it Works, Pros, Cons
+ *
+ * Constructor Injection
+ * How it Works: Dependencies passed via constructor.
+ * Pros: Ensures dependencies are always set, immutable.
+ * Cons: Less flexible.
+ *
+ * Setter Injection
+ * How it Works: Dependencies set via setter methods.
+ * Pros: More flexible, dependencies can be changed.
+ * Cons: Risk of missing dependencies.
+ *
+ * Interface Injection
+ * How it Works: Forces dependency injection via an interface.
+ * Pros: Enforces structured dependency injection.
+ * Cons: More complex.
+ */
+
 interface BaseStudent{
     public function display();
 }
