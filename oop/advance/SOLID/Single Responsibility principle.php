@@ -6,3 +6,16 @@
  * It makes our code more cohesive, hence makes it easy to test and maintain.
  * “A class should only have a single responsibility, that is, only changes to one part of the software’s specification should be able to affect the specification of the class. ”
  */
+
+class UserInfo{
+    public function getUserName()
+    {
+        return 'name';
+    }
+
+    // Here SRP violates
+    public function sendMailToUser()
+    {
+        return 'success';
+    }
+}
