@@ -7,6 +7,7 @@
  * “A class should only have a single responsibility, that is, only changes to one part of the software’s specification should be able to affect the specification of the class. ”
  */
 
+// Example of SRP Violates
 class UserInfo{
     public function getUserName()
     {
@@ -17,5 +18,27 @@ class UserInfo{
     public function sendMailToUser()
     {
         return 'success';
+    }
+}
+
+// Example of SRP refactor
+
+class UserInfo2{
+    public function getName(){
+        return 'name';
+    }
+
+    public function getEmail(){
+        return 'email';
+    }
+}
+
+class Email{
+    public function getEmailBody(){
+        return 'email_body';
+    }
+
+    public function sentEmail(){
+        return 'sent_email';
     }
 }
