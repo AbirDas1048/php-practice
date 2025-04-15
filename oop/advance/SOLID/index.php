@@ -22,4 +22,11 @@
  * Liskov Substitution principle
  * Interface Segregation principle
  * Dependency Inversion principle.
+ *
+ * Reference
+ * Bengali: https://medium.com/%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%97%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%BF%E0%A6%82-%E0%A6%AA%E0%A6%BE%E0%A6%A4%E0%A6%BE/solid-principle-part-1-b5ff613de6a3
+ * https://dev.to/devlinaung/solid-principles-in-php-363j
+ * https://medium.com/@tech.sajjad/understanding-solid-principles-in-php-building-robust-and-maintainable-code-3bb81ee96df0
+ * https://medium.com/successivetech/s-o-l-i-d-the-first-5-principles-of-object-oriented-design-with-php-b6d2742c90d7
+ * https://www.linkedin.com/pulse/understanding-solid-principles-object-oriented-design-zeeshan-tanveer/
  */
