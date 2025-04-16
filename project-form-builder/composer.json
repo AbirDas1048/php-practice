@@ -1,0 +1,16 @@
+{
+    "name": "abir/form-builder",
+    "description": "Form builder with SOLID principles",
+    "autoload": {
+        "psr-4": {
+            "Abir\\FormBuilder\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Abir Das",
+            "email": "abirdas422@gmail.com"
+        }
+    ],
+    "require": {}
+}
