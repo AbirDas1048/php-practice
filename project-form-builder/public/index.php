@@ -3,52 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Form Builder</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 2rem;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-
-        form {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 8px;
-            max-width: 500px;
-            margin: auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.25rem;
-            font-weight: bold;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        button[type="submit"] {
-            padding: 0.6rem 1.2rem;
-            background-color: #007bff;
-            border: none;
-            border-radius: 4px;
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
