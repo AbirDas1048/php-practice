@@ -2,8 +2,8 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/oop" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/project-form-builder/src" isTestSource="false" packagePrefix="FormBuilder" />
+      <sourceFolder url="file://$MODULE_DIR$/project03(Form Builder)/src" isTestSource="false" packagePrefix="Abir\FormBuilder\" />
+      <excludeFolder url="file://$MODULE_DIR$/project03(Form Builder)/vendor/composer" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
