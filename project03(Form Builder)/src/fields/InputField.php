@@ -18,8 +18,8 @@ class InputField implements FormFieldInterface
     public function __construct(string $type, string $id, string $name, string $label, array $attributes = [])
     {
         $this->type = $type;
-        $this->id  = $id;
-        $this->name  = $name;
+        $this->id = $id;
+        $this->name = $name;
         $this->label = $label;
         $this->setAttributes($attributes);
     }
