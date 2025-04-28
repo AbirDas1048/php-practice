@@ -27,5 +27,8 @@ $form->addField(new InputField(
 $form->addField(new InputField(
     Constants::INPUT_TYPE_HIDDEN, 'id', 'id', '', ['required' => true]
 ));
+$form->addField(new InputField(
+    Constants::INPUT_TYPE_DATE, 'dob', 'dob', 'Date of Birth', ['class' => 'from-control']
+));
 
 echo $form->render();
