@@ -11,4 +11,5 @@ class Constants
     public const INPUT_TYPE_HIDDEN = 'hidden';
     public const INPUT_TYPE_DATE = 'date';
     public const INPUT_TYPE_TIME = 'time';
+    public const INPUT_TYPE_DATETIME = 'datetime-local';
 }

@@ -30,9 +30,11 @@ $form->addField(new InputField(
 $form->addField(new InputField(
     Constants::INPUT_TYPE_DATE, 'dob', 'dob', 'Date of Birth', ['class' => 'from-control']
 ));
-
 $form->addField(new InputField(
     Constants::INPUT_TYPE_TIME, 'dob_time', 'dob_time', 'Time of Birth', ['class' => 'from-control']
 ));
-
+$form->addField(new InputField(
+    Constants::INPUT_TYPE_DATETIME, 'current_date_time', 'current_date_time', 'Current Date and Time',
+    ['class' => 'from-control', 'value' => '2025-04-30T19:30']
+));
 echo $form->render();
