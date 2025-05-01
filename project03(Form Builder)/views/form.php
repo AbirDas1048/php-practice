@@ -37,4 +37,8 @@ $form->addField(new InputField(
     Constants::INPUT_TYPE_DATETIME, 'current_date_time', 'current_date_time', 'Current Date and Time',
     ['class' => 'from-control', 'value' => '2025-04-30T19:30']
 ));
+$form->addField(new InputField(
+    Constants::INPUT_TYPE_URL, 'website', 'website', 'Website',
+    ['class' => 'from-control', 'title' => 'Enter your website', 'pattern' => "https://.*"]
+));
 echo $form->render();
