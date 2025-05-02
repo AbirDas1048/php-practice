@@ -41,4 +41,9 @@ $form->addField(new InputField(
     Constants::INPUT_TYPE_URL, 'website', 'website', 'Website',
     ['class' => 'from-control', 'title' => 'Enter your website', 'pattern' => "https://.*"]
 ));
+$form->addField(new InputField(
+    Constants::INPUT_TYPE_TEL, 'telno', 'telno', 'Phone no',
+    ['class' => 'from-control', 'placeholder' => '01XXX-XXXXXX', 'pattern' => "[0-9]{5}-[0-9]{6}"]
+));
+
 echo $form->render();
