@@ -14,4 +14,5 @@ class Constants
     public const INPUT_TYPE_DATETIME = 'datetime-local';
     public const INPUT_TYPE_URL = 'url';
     public const INPUT_TYPE_TEL = 'tel';
+    public const INPUT_TYPE_COLOR = 'color';
 }

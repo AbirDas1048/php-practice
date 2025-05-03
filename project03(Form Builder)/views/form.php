@@ -45,5 +45,9 @@ $form->addField(new InputField(
     Constants::INPUT_TYPE_TEL, 'telno', 'telno', 'Phone no',
     ['class' => 'from-control', 'placeholder' => '01XXX-XXXXXX', 'pattern' => "[0-9]{5}-[0-9]{6}"]
 ));
+$form->addField(new InputField(
+    Constants::INPUT_TYPE_COLOR, 'fav_color', 'fav_color', 'Pick a color',
+    ['class' => 'from-control', 'value' => "#e66465"]
+));
 
 echo $form->render();
