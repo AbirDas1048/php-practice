@@ -1,6 +1,7 @@
 <?php
 use Abir\FormBuilder\classes\FormBuilder;
 use Abir\FormBuilder\fields\InputField;
+use Abir\FormBuilder\fields\Fieldset;
 use Abir\FormBuilder\config\Constants;
 
 $form = new FormBuilder();
@@ -50,7 +51,12 @@ $form->addField(new InputField(
     ['class' => 'from-control', 'value' => "#e66465"]
 ));
 
+$favFieldset = new Fieldset('Choose Favorite Thing');
+$favFieldset->addField(new InputField(Constants::INPUT_TYPE_CHECKBOX, 'fav_coding', 'fav', 'Coding', ['checked' => true]));
+$favFieldset->addField(new InputField(Constants::INPUT_TYPE_CHECKBOX, 'fav_traveling', 'fav', 'Traveling', ['checked' => true]));
+$favFieldset->addField(new InputField(Constants::INPUT_TYPE_CHECKBOX, 'fav_sleeping', 'fav', 'Sleeping', []));
+$favFieldset->addField(new InputField(Constants::INPUT_TYPE_CHECKBOX, 'fav_eating', 'fav', 'Eating', []));
+$favFieldset->addField(new InputField(Constants::INPUT_TYPE_CHECKBOX, 'fav_gaming', 'fav', 'Gaming', []));
 
-
-
+$form->addField($favFieldset);
 echo $form->render();

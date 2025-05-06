@@ -18,4 +18,5 @@ class Constants
     public const INPUT_TYPE_SEARCH = 'search';
     public const INPUT_TYPE_TEL = 'tel';
     public const INPUT_TYPE_COLOR = 'color';
+    public const INPUT_TYPE_CHECKBOX = 'checkbox';
 }
