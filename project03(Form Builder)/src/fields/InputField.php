@@ -2,6 +2,7 @@
 
 namespace Abir\FormBuilder\fields;
 
+use Abir\FormBuilder\helpers\FormHelper;
 use Abir\FormBuilder\interfaces\FormFieldInterface;
 use Abir\FormBuilder\traits\FieldAttributeTrait;
 use Abir\FormBuilder\traits\LabelHelperTrait;
@@ -26,6 +27,8 @@ class InputField implements FormFieldInterface
 
     public function render(): string
     {
+        $wrapperClass = FormHelper::isInlineField($this->type) ? 'form-group inline-label' : 'form-group';
+
         $labelHtml = $this->renderLabel($this->id, $this->label, $this->attributes, $this->type);
 
         $inputHtml = sprintf(
@@ -35,6 +38,9 @@ class InputField implements FormFieldInterface
             htmlspecialchars($this->name),
             $this->renderAttributes()
         );
-        return $labelHtml . $inputHtml;
+
+        $input = FormHelper::isInlineField($this->type) ? $inputHtml . $labelHtml : $labelHtml . $inputHtml;
+
+        return "<div class='{$wrapperClass}'>{$input}</div>";
     }
 }

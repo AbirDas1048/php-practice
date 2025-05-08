@@ -63,3 +63,11 @@ input[type="color"] {
     border: none;
     cursor: pointer;
 }
+
+/* General small input override */
+input[type="checkbox"],
+input[type="radio"]
+{
+    width: auto;
+    margin-bottom: 0.5rem;
+}
