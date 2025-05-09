@@ -67,4 +67,9 @@ $genderFieldset->addField(new InputField(Constants::INPUT_TYPE_RADIO, 'gen_other
 
 $form->addField($genderFieldset);
 
+$form->addField(new InputField(
+    Constants::INPUT_TYPE_FILE, 'avatar', 'avatar', 'Choose an image',
+    ['class' => 'from-control', 'accept' => 'image/*']
+));
+
 echo $form->render();
