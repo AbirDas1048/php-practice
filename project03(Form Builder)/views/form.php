@@ -59,4 +59,12 @@ $favFieldset->addField(new InputField(Constants::INPUT_TYPE_CHECKBOX, 'fav_eatin
 $favFieldset->addField(new InputField(Constants::INPUT_TYPE_CHECKBOX, 'fav_gaming', 'fav', 'Gaming', []));
 
 $form->addField($favFieldset);
+
+$genderFieldset = new Fieldset('Choose Gender');
+$genderFieldset->addField(new InputField(Constants::INPUT_TYPE_RADIO, 'gen_male', 'gender', 'Male', ['checked' => true]));
+$genderFieldset->addField(new InputField(Constants::INPUT_TYPE_RADIO, 'gen_female', 'gender', 'Female', []));
+$genderFieldset->addField(new InputField(Constants::INPUT_TYPE_RADIO, 'gen_other', 'gender', 'Other', []));
+
+$form->addField($genderFieldset);
+
 echo $form->render();

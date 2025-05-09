@@ -12,6 +12,7 @@ class FormHelper
         return [
             Constants::INPUT_TYPE_CHECKBOX,
             Constants::INPUT_TYPE_COLOR,
+            Constants::INPUT_TYPE_RADIO,
         ];
     }
     public static function isInlineField(string $type): bool
