@@ -72,4 +72,9 @@ $form->addField(new InputField(
     ['class' => 'from-control', 'accept' => 'image/*']
 ));
 
+$form->addField(new InputField(
+    Constants::INPUT_TYPE_RANGE, 'points', 'points', 'Choose points',
+    ['class' => 'from-control', 'min' => 0, 'max' => 20, 'step' => 2, 'value' => 10]
+));
+
 echo $form->render();

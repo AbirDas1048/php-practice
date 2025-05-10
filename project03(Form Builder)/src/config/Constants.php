@@ -21,4 +21,5 @@ class Constants
     public const INPUT_TYPE_CHECKBOX = 'checkbox';
     public const INPUT_TYPE_RADIO = 'radio';
     public const INPUT_TYPE_FILE = 'file';
+    public const INPUT_TYPE_RANGE = 'range';
 }
