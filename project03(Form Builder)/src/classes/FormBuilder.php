@@ -16,7 +16,6 @@ class FormBuilder
         foreach ($this->fields as $field) {
             $form .= $field->render();
         }
-        $form .= "<button type='submit'>Submit</button></form>";
         return $form;
     }
 }

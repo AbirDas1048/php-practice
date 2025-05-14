@@ -2,6 +2,7 @@
 use Abir\FormBuilder\classes\FormBuilder;
 use Abir\FormBuilder\fields\InputField;
 use Abir\FormBuilder\fields\Fieldset;
+use Abir\FormBuilder\fields\ButtonField;
 use Abir\FormBuilder\config\Constants;
 
 $form = new FormBuilder();
@@ -76,5 +77,8 @@ $form->addField(new InputField(
     Constants::INPUT_TYPE_RANGE, 'points', 'points', 'Choose points',
     ['class' => 'from-control', 'min' => 0, 'max' => 20, 'step' => 2, 'value' => 10]
 ));
+
+$form->addField(new ButtonField(Constants::BUTTON_TYPE_BUTTON, 'Click Me', ['onclick' => 'alert("clicked!")']));
+
 
 echo $form->render();
