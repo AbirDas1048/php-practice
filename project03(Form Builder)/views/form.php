@@ -79,6 +79,7 @@ $form->addField(new InputField(
 ));
 
 $form->addField(new ButtonField(Constants::BUTTON_TYPE_BUTTON, 'Click Me', ['onclick' => 'alert("clicked!")']));
+$form->addField(new ButtonField(Constants::BUTTON_TYPE_RESET, 'Clear', []));
 
 
 echo $form->render();
