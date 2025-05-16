@@ -24,4 +24,5 @@ class Constants
     public const INPUT_TYPE_RANGE = 'range';
     public const BUTTON_TYPE_BUTTON  = 'button';
     public const BUTTON_TYPE_RESET  = 'reset';
+    public const BUTTON_TYPE_SUBMIT  = 'submit';
 }
