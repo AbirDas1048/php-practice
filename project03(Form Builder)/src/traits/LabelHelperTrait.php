@@ -6,7 +6,7 @@ use Abir\FormBuilder\config\Constants;
 
 trait LabelHelperTrait
 {
-    protected function renderLabel(string $id, string $label = '', array $attributes = [], string $type = Constants::INPUT_TYPE_TEXT): string
+    protected function renderLabel(string $id, string $label = '', array $attributes = [], string $type = ''): string
     {
         if ($type === Constants::INPUT_TYPE_HIDDEN || !$label) {
             return ''; // No label for hidden or empty label
