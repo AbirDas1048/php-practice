@@ -14,13 +14,16 @@ class SelectField implements FormFieldInterface
     protected string $id;
     protected string $name;
     protected array $options = [];
-    protected ?string $selected = null;
-    public function __construct(string $id, string $name, string $label, array $options = [], string|null $selected = null, array $attributes = []){
+    protected array $selected = [];
+    protected bool $isMultiple;
+
+    public function __construct(string $id, string $name, string $label, array $options = [], array|string|null $selected = null, array $attributes = [], bool $isMultiple = false){
         $this->id = $id;
         $this->name = $name;
         $this->label = $label;
         $this->options = $options;
-        $this->selected = $selected;
+        $this->selected = is_array($selected) ? $selected : [$selected];
+        $this->isMultiple = $isMultiple;
         $this->setAttributes($attributes);
     }
 
@@ -28,14 +31,18 @@ class SelectField implements FormFieldInterface
     {
         $labelHtml = $this->renderLabel($this->id, $this->label, $this->attributes);
 
-        $selectHtml = sprintf('<select name="%s" id="%s"%s>',
-            htmlspecialchars($this->name),
+        $nameAttr = $this->isMultiple ? $this->name . '[]' : $this->name;
+        $multipleAttr = $this->isMultiple ? ' multiple' : '';
+
+        $selectHtml = sprintf('<select name="%s" id="%s"%s%s>',
+            htmlspecialchars($nameAttr),
             htmlspecialchars($this->id),
+            $multipleAttr,
             $this->renderAttributes()
         );
 
         foreach ($this->options as $value => $text) {
-            $isSelected = ($value == $this->selected) ? ' selected' : '';
+            $isSelected = in_array($value, $this->selected) ? ' selected' : '';
             $selectHtml .= sprintf('<option value="%s"%s>%s</option>',
                 htmlspecialchars($value),
                 $isSelected,

@@ -79,13 +79,13 @@ $form->addField(new InputField(
     ['class' => 'from-control', 'min' => 0, 'max' => 20, 'step' => 2, 'value' => 10]
 ));
 
-$form->addField(new SelectField(
-    'gender',
-    'gender',
-    'Gender',
-    ['' => 'Select Gender', 'male' => 'Male', 'female' => 'Female'],
-    'male',
-    ['required' => true]
+$form->addField(new SelectField('gender', 'gender', 'Gender',
+    ['' => 'Select Gender', 'male' => 'Male', 'female' => 'Female'], 'male', ['required' => true]
+));
+
+$form->addField(new SelectField('skills', 'skills', 'Skills',
+    ['' => 'Select Skills', 'php' => 'PHP', 'js' => 'JavaScript', 'java' => 'Java', 'dot_net' => 'ASP Dot Net'],
+    ['php', 'js'], ['required' => true], true
 ));
 
 $form->addField(new ButtonField(Constants::BUTTON_TYPE_BUTTON, 'Click Me', ['onclick' => 'alert("clicked!")']));
