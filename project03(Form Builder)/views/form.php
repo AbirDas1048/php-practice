@@ -6,7 +6,7 @@ use Abir\FormBuilder\fields\SelectField;
 use Abir\FormBuilder\fields\ButtonField;
 use Abir\FormBuilder\config\Constants;
 
-$form = new FormBuilder();
+$form = (new FormBuilder('/submit.php', 'post', ['id' => 'userForm', 'class' => 'form-builder', 'enctype' => 'multipart/form-data']));
 $form->addField(new InputField(
     Constants::INPUT_TYPE_TEXT, 'full_name', 'full_name', 'Full Name',
     ['class' => 'from-control', 'required' => true, 'placeholder' => 'Full Name']
