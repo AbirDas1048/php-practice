@@ -15,5 +15,8 @@ function processMaternityLeave($person)
     }
 }
 
-
-processMaternityLeave($person);
+try{
+    processMaternityLeave($person);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
