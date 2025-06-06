@@ -2,13 +2,15 @@
 $person = [
     'name' => 'XYZ',
     'id' => '6625535524',
-    'age' => '24',
+    'age' => '16',
     'sex' => 'M',
 ];
 
 function processMaternityLeave($person)
 {
-    if ($person['sex'] == 'F') {
+    if($person['age'] < 18){
+        throw new Exception("Too young\n");
+    } else if ($person['sex'] == 'F') {
         echo "Processed";
     } else {
         throw new GenderMismatchException($person);
@@ -32,7 +34,9 @@ class GenderMismatchException extends Exception
 
 try{
     processMaternityLeave($person);
-} catch(Exception $e) {
+} catch(GenderMismatchException $e) {
     echo $e->getMessage();
     $e->getDetailedMessage();
+} catch (Exception $e){
+    echo $e->getMessage();
 }
