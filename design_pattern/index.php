@@ -7,7 +7,7 @@
  * সফটওয়্যার ইঞ্জিনিয়ারিং এ ডিজাইন প্যাটার্ন হল কোডের সাধারণ সমস্যার রি-ইউজিবিলিটি বাড়ানোর জন্য এক প্রকারের নিয়মনীতি অথবা টেম্পলেট।
  * যাতে করে সফটওয়্যার একটা নির্দিষ্ট আর্কিটেকচার এ তৈরি করা যায় আর কোডের পুনুরাব্রিত্তি ঠেকান যায়।
  * The Catalog of Design Patterns
- * Creational Design Pattern
- * Structural Design Pattern
- * Behavioural Design Pattern
+ * Creational Design Pattern (focus on object creation).
+ * Structural Design Pattern (focus on object composition).
+ * Behavioural Design Pattern (focus on communication between objects).
  */
