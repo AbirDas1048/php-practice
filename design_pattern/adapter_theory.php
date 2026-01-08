@@ -45,75 +45,96 @@
 
 /***
  *  ---> In Laravel <---
- * Singleton does exist in Laravel, but not in the classic OOP way you see in books.
- * Laravel uses Container-based Singleton, which is the correct and recommended approach.
+ * you use the Adapter pattern, but you usually don’t write it explicitly.
+ * Laravel hides adapters behind facades and contracts, so you benefit from the pattern without realizing it.
  *
- * Short Answer
- * 👉 You should NOT manually create Singleton classes in Laravel
- * 👉 You SHOULD use Laravel’s Service Container singleton() method
+ * How Adapter is used in Laravel (Real Examples)
+ * 1️⃣ Filesystem (Classic Adapter example)
+ * Storage::disk('s3')->put('file.txt', 'data');
+ * Storage::disk('local')->put('file.txt', 'data');
  *
- * ---> Why classic Singleton is discouraged in Laravel <---
- *  >>> Classic Singleton <<<
- *  Uses static state
- *  Hard to mock in tests
- *  Breaks Dependency Injection
- *  Acts like a global variable
- * Laravel already solves this with IoC Container + DI.
- */
-
-/***
- * The Laravel way: Container Singleton ✅
- * Example: Registering a Singleton Service
+ * Different systems:
+ * Local filesystem
+ * Amazon S3
+ * FTP
  *
- * *** / App\Providers\AppServiceProvider.php ***
+ * All look the same to you.
  *
- * use App\Services\CurrencyService;
+ * Behind the scenes:
+ * Each driver adapts its API to Laravel’s filesystem interface
+ * 👉 You are using Adapter directly, but Laravel wrote it for you.
  *
- * public function register()
- * {
- *      $this->app->singleton(CurrencyService::class, function ($app) {
- *          return new CurrencyService();
- *      });
+ * 2️⃣ Cache Drivers
+ * Cache::put('key', 'value');
+ *
+ * Drivers:
+ * Redis
+ * Memcached
+ * File
+ * Database
+ *
+ * Each driver adapts its own API to:
+ * Illuminate\Contracts\Cache\Repository
+ *
+ * 3️⃣ Queue Drivers
+ * dispatch(new ProcessOrder());
+ *
+ * Drivers:
+ * Redis
+ * Database
+ * SQS
+ * Beanstalkd
+ *
+ * Different queue engines → same interface
+ *
+ * 4️⃣ Mail Drivers
+ * Mail::to($user)->send(new InvoiceMail());
+ *
+ * Drivers:
+ *
+ * SMTP
+ * SES
+ * Mailgun
+ * Postmark
+ *
+ * All adapted to Laravel’s mail contract.
+ *
+ * 5️⃣ Payment Gateways (Your own code)
+ * Laravel doesn’t ship payment gateways, but you implement Adapter here 👇
+ *
+ * interface PaymentGateway {
+ *      public function pay(float $amount): bool;
  * }
  *
- * Usage (Dependency Injection)
+ * class StripeAdapter implements PaymentGateway { ... }
+ * class BkashAdapter implements PaymentGateway { ... }
  *
- * class PaymentController extends Controller
- * {
- *      public function __construct(private CurrencyService $currencyService) {}
+ *
+ * Controllers stay unchanged.
+ *
+ *
+ * ---> Why you don’t notice Adapter in Laravel <---
+ *
+ * Laravel:
+ * Uses Contracts (interfaces)
+ * Uses Service Container
+ * Uses Drivers / Managers
+ *
+ * This combination naturally leads to Adapter pattern.
+ *
+ * ---> When DO YOU write Adapter manually in Laravel? <---
+ *
+ * You write Adapter when:
+ * Integrating 3rd-party SDKs
+ * Working with legacy APIs
+ * Normalizing multiple external services
+ * Building pluggable systems
+ *
+ * Example: SMS Gateway
+ * interface SmsGateway {
+ *      public function send(string $to, string $message): bool;
  * }
  *
- * ✔ One instance per request
- * ✔ Fully testable
- * ✔ No static calls
- * ✔ SOLID-compliant
- *
- * ---> When SHOULD you use Laravel Singleton? <---
- *
- * >>> Use it when <<<
- * Service is expensive to create
- * Shared state is needed
- * Stateless utility service
- * Manager classes
- *
- * >>> Examples <<<
- *
- * Currency converter
- * API client
- * Configuration loader
- * Permission resolver
- *
- * ---> When should you AVOID it? <---
- *
- * >>> Avoid when <<<
- * Service holds user-specific state
- * Multiple configurations needed
- * Logic belongs to request lifecycle
- */
-
-/***
- * Interview-ready Answer 🎯
- *
- * Laravel uses singleton via the Service Container, not classic Singleton pattern.
- * It provides single-instance services while keeping dependency injection, testability, and SOLID principles intact.
+ * class TwilioAdapter implements SmsGateway { ... }
+ * class NexmoAdapter implements SmsGateway { ... }
  */
