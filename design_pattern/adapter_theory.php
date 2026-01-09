@@ -138,3 +138,10 @@
  * class TwilioAdapter implements SmsGateway { ... }
  * class NexmoAdapter implements SmsGateway { ... }
  */
+
+/***
+ * Interview-ready summary 🎯
+ * Adapter pattern is commonly used to integrate third-party systems, legacy code, and multiple backends under a single consistent interface.
+ * Adapter pattern improves flexibility, testability and extensibility by isolating third-party differences.
+ * But it adds extra abstraction and class overhead if overused.
+ */
