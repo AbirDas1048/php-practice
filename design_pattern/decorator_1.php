@@ -43,10 +43,12 @@ $basicNotifier = new BasicNotifier();
 $emailNotifier = new EmailNotifier($basicNotifier);
 $smsNotifier = new SMSNotifier($basicNotifier);
 $smsNotifier2 = new SMSNotifier($emailNotifier);
+$emailNotifier2 = new EmailNotifier($smsNotifier);
 
 echo $basicNotifier->notify("Hello world via basic notifier\n");
 echo $emailNotifier->notify("Hello world");
 echo $smsNotifier->notify("Hello world");
 echo PHP_EOL;
 echo $smsNotifier2->notify("Hello world");
+echo $emailNotifier2->notify("Hello world");
 
