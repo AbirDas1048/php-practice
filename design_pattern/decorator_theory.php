@@ -32,3 +32,18 @@
  * adds behavior
  * passes control forward
  */
+
+/***
+ * ---> Pros & Cons <---
+ * ✅ Pros
+ *
+ * Flexible behavior
+ * Avoids subclass explosion
+ * Runtime composition
+ *
+ * ❌ Cons
+ *
+ * Many small classes
+ * Harder debugging
+ * Order matters
+ */
