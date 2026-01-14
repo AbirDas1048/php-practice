@@ -47,3 +47,21 @@
  * Harder debugging
  * Order matters
  */
+
+/***
+ * Interview-ready summary 🎯
+ * Decorator pattern dynamically adds behavior to objects without changing their structure, using composition instead of inheritance.
+ * Decorator wraps an object, keeps the same interface, and adds behavior step by step at runtime.
+ */
+
+/***
+ * ---> Structure <---
+ *
+ * Component (interface)
+ * ↑
+ * ConcreteComponent
+ * ↑
+ * Decorator (abstract)
+ * ↑
+ * ConcreteDecorators
+ */
