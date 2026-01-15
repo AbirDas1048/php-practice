@@ -65,3 +65,15 @@
  * ↑
  * ConcreteDecorators
  */
+
+/***
+ *  ---> In Laravel <---
+ * Middleware Pipeline = Decorator Pattern
+ * $request → Auth → Throttle → Log → Controller
+ *
+ * Each middleware:
+ * Wraps the request
+ * Adds behavior
+ * Calls $next($request)
+ * 👉 Classic Decorator
+ */
