@@ -77,3 +77,26 @@
  * Calls $next($request)
  * 👉 Classic Decorator
  */
+
+/***
+ * 🧠 Key Decorator Rules (Remember this)
+ *
+ * Decorator implements same interface
+ * Decorator wraps the component
+ * Decorator delegates before/after
+ * Order of decorators matters
+ *
+ * ---> Why this is powerful <---
+ *
+ * No subclass explosion
+ * Runtime composition
+ * Easy to extend
+ * SOLID-compliant
+ *
+ *
+ * Decorator + SOLID
+ *
+ * ✔ SRP – Each decorator has one job
+ * ✔ OCP – Add features without modification
+ * ✔ DIP – Depends on abstraction
+ */
