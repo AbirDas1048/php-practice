@@ -100,3 +100,11 @@
  * ✔ OCP – Add features without modification
  * ✔ DIP – Depends on abstraction
  */
+
+/***
+ * Decorator vs Adapter (Very common confusion)
+ * Decorator    Adapter
+ * Adds behavior    Changes interface
+ * Same interface    Different interface
+ * Enhances    Converts
+ */
